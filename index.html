@@ -332,7 +332,10 @@ footer .town{display:block;font-family:var(--serif);font-size:1.2rem;color:#fff;
 }
 @media (max-width:700px){
   .gallery{height:auto;grid-template-columns:repeat(4,1fr);grid-template-rows:auto;border-radius:16px}
-  .g-main{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3.2}
+  .g-main{grid-column:1/-1;grid-row:auto}
+  .g-main img{height:auto;aspect-ratio:4/3.2}
+  .g-tag{position:static;max-width:none;padding:10px 14px;background:#00022E}
+  .g-tag span{padding:0;box-shadow:none;font-size:.78rem}
   .g-tile{aspect-ratio:1}
   .g-tile span{left:6px;bottom:6px;font-size:.68rem;padding:4px 8px}
   .g-cap{right:14px;bottom:56px}
