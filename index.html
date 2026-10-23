@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iBackHome — Build at home. Stay in sight.</title>
+<meta name="description" content="We are researching how Nigerians abroad can build in Enugu with proof of progress and milestone-based payment. Tell us your story in 3 minutes.">
+<link rel="icon" href="assets/ibackhome-logo-navy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#050f2e;
+  --navy-900:#081848;
+  --navy-800:#0a1f5c;
+  --navy-700:#12308a;
+  --blue:#1f5bff;
+  --blue-soft:#e8eeff;
+  --ink:#0a1f5c;
+  --text:#27345f;
+  --muted:#5f6b92;
+  --line:#dbe2f5;
+  --bg:#ffffff;
+  --bg-alt:#f5f7fd;
+  --danger:#c62828;
+  --ok:#0b7a4b;
+  --radius:16px;
+  --shadow:0 18px 50px -20px rgba(10,31,92,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Geist",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{color:var(--ink);line-height:1.12;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:650;letter-spacing:-.01em}
+p{margin:0}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:650;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.lead{font-size:1.1rem;color:var(--muted);max-width:60ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:600;border-radius:999px;padding:14px 26px;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn-primary{background:#fff;color:var(--navy-800)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px rgba(255,255,255,.5)}
+.btn-solid{background:var(--navy-800);color:#fff}
+.btn-solid:hover{background:var(--navy-700);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-line{background:#fff;color:var(--navy-800);border:1px solid var(--line)}
+.btn-line:hover{border-color:var(--navy-800)}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
+
+/* nav */
+.nav{position:absolute;inset:0 0 auto 0;z-index:5}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.nav img{height:48px;width:auto}
+.nav a.cta{color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;border:1px solid rgba(255,255,255,.35);padding:10px 20px;border-radius:999px}
+.nav a.cta:hover{background:rgba(255,255,255,.1)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;background:
+  radial-gradient(900px 500px at 85% 10%,rgba(31,91,255,.55),transparent 60%),
+  radial-gradient(700px 500px at 0% 100%,rgba(31,91,255,.28),transparent 60%),
+  linear-gradient(160deg,var(--navy-900),var(--navy-950));padding:170px 0 110px}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.hero h1{color:#fff;font-size:clamp(2.4rem,5.6vw,4.2rem);font-weight:800;letter-spacing:-.035em}
+.hero h1 span{color:#9db9ff}
+.hero p.sub{margin-top:22px;font-size:1.2rem;color:#c9d6ff;max-width:54ch}
+.hero .actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+.hero .meta{margin-top:26px;font-size:.92rem;color:#9fb0e6}
+.hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:28px;backdrop-filter:blur(8px)}
+.hero-card h3{color:#fff;font-size:1rem;margin-bottom:18px;font-weight:600;color:#bcd0ff}
+.ms{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.ms li{display:flex;gap:14px;align-items:flex-start;color:#e6edff}
+.ms .dot{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3)}
+.ms li.done .dot{background:#fff;color:var(--navy-800);border-color:#fff}
+.ms small{display:block;color:#9fb0e6;font-size:.82rem}
+
+section{padding:96px 0}
+section.alt{background:var(--bg-alt)}
+.sec-head{margin-bottom:48px}
+
+/* problem */
+.grid{display:grid;gap:20px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.card .ico{width:44px;height:44px;border-radius:12px;background:var(--blue-soft);color:var(--navy-800);display:grid;place-items:center;margin-bottom:16px}
+.card .ico svg{width:22px;height:22px}
+.card p{color:var(--muted);margin-top:8px;font-size:.98rem}
+
+/* how */
+.steps{counter-reset:s}
+.step{position:relative;padding-top:56px}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:0;left:0;font-weight:800;font-size:1.9rem;color:var(--blue);letter-spacing:-.03em}
+.step p{color:var(--muted);margin-top:8px;font-size:.98rem}
+.rules{margin-top:44px;background:var(--navy-800);color:#dfe8ff;border-radius:var(--radius);padding:28px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rules strong{display:block;color:#fff;font-size:1.02rem;margin-bottom:4px}
+.rules span{font-size:.94rem;color:#b8c8f5}
+
+/* vision */
+.vision{background:linear-gradient(160deg,var(--navy-900),var(--navy-950));color:#fff}
+.vision h2{color:#fff}
+.vision .lead{color:#c3d0fb}
+.vision .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.quote{font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:#fff;border-left:4px solid var(--blue);padding-left:24px}
+.quote small{display:block;margin-top:16px;font-size:.95rem;font-weight:400;color:#9fb0e6;letter-spacing:0}
+
+/* survey */
+.survey-shell{max-width:780px;margin:0 auto}
+.survey-head{text-align:center;margin-bottom:34px}
+.survey-head .lead{margin:14px auto 0}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:34px}
+.progress{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:.88rem;color:var(--muted);font-weight:500}
+.bar{height:6px;background:var(--blue-soft);border-radius:999px;overflow:hidden;margin-bottom:28px}
+.bar i{display:block;height:100%;width:33.33%;background:var(--navy-800);border-radius:999px;transition:width .3s}
+fieldset{border:0;margin:0;padding:0}
+.step-pane{display:none}
+.step-pane.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.q{margin-bottom:26px}
+.q>label,.q>legend{display:block;font-weight:650;color:var(--ink);margin-bottom:4px;font-size:1.02rem;padding:0}
+.q .hint{font-size:.88rem;color:var(--muted);margin-bottom:10px}
+.req{color:var(--danger)}
+input[type=text],input[type=email],input[type=number],select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--navy-800);box-shadow:0 0 0 3px rgba(31,91,255,.15)}
+textarea{min-height:110px;resize:vertical}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
+.opt span{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.97rem;transition:all .15s;background:#fff}
+.opt span::before{content:"";flex:none;width:18px;height:18px;border:2px solid #b4c0e6;border-radius:50%;transition:all .15s}
+.opt.check span::before{border-radius:5px}
+.opt input:checked+span{border-color:var(--navy-800);background:var(--blue-soft);color:var(--ink);font-weight:550}
+.opt input:checked+span::before{border-color:var(--navy-800);background:var(--navy-800) radial-gradient(#fff 35%,transparent 38%)}
+.opt.check input:checked+span::before{background:var(--navy-800);box-shadow:inset 0 0 0 3px #fff}
+.opt input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.price-grid .q{margin:0}
+.price-grid label{font-weight:550;font-size:.93rem;color:var(--text)}
+.err{display:none;color:var(--danger);font-size:.88rem;margin-top:8px;font-weight:500}
+.q.invalid .err{display:block}
+.q.invalid input[type=text],.q.invalid input[type=email],.q.invalid select,.q.invalid textarea{border-color:var(--danger)}
+.nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:32px;align-items:center}
+.consent{font-size:.88rem;color:var(--muted)}
+.consent label{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted);font-size:.9rem}
+.consent input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--navy-800)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.status{margin-top:18px;padding:14px 16px;border-radius:12px;font-size:.95rem;display:none}
+.status.show{display:block}
+.status.error{background:#fdecea;color:#8a1c1c;border:1px solid #f5c6c2}
+.status.error a{color:#8a1c1c;font-weight:600}
+.thanks{display:none;text-align:center;padding:30px 10px}
+.thanks.show{display:block;animation:fade .3s ease}
+.thanks .tick{width:68px;height:68px;border-radius:50%;background:var(--navy-800);color:#fff;display:grid;place-items:center;margin:0 auto 20px}
+.thanks .tick svg{width:32px;height:32px}
+.thanks p{color:var(--muted);max-width:46ch;margin:12px auto 0}
+
+/* sponsor + footer */
+.sponsor{padding:56px 0;border-top:1px solid var(--line)}
+.sponsor .wrap{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;text-align:left}
+.sponsor .label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650;color:var(--muted)}
+.sponsor img{height:84px;width:auto;border-radius:10px;border:1px solid var(--line)}
+footer{background:var(--navy-950);color:#9fb0e6;padding:48px 0;font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer img{height:56px;width:auto}
+footer a{color:#cdd9ff}
+footer .fine{max-width:62ch;font-size:.84rem;line-height:1.55}
+.social{display:flex;gap:10px}
+.social a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;border:1px solid rgba(255,255,255,.28);transition:background .15s,transform .15s}
+.social a[hidden]{display:none}
+.social a:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+.social a:focus-visible{outline:3px solid #9db9ff;outline-offset:2px}
+.social svg{width:20px;height:20px}
+
+@media (max-width:900px){
+  .hero{padding:130px 0 80px}
+  .hero .wrap,.vision .wrap{grid-template-columns:1fr;gap:36px}
+  .g4{grid-template-columns:1fr 1fr}
+  .g3,.rules{grid-template-columns:1fr}
+  section{padding:70px 0}
+}
+@media (max-width:560px){
+  .g4,.row,.price-grid,.opts.two{grid-template-columns:1fr}
+  .form-card{padding:22px 18px;border-radius:18px}
+  .nav img{height:40px}
+  .nav-row .btn{padding:13px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <img src="assets/ibackhome-logo-white.png" alt="iBackHome — Far from home, never out of sight">
+    <a class="cta" href="#survey">Share your story</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" style="padding-bottom:110px">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#9db9ff">Building in Enugu from abroad?</span>
+      <h1>Far from home,<br><span>never out of sight.</span></h1>
+      <p class="sub">We are building a way for Nigerians abroad to see real progress on their home in Enugu, and to pay for it one verified milestone at a time. Before we launch, we want to hear what you have been through.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#survey">Take the 3-minute survey</a>
+        <a class="btn btn-ghost" href="#how">How it will work</a>
+      </div>
+      <p class="meta">No sales pitch. Your answers shape what we build and what it costs.</p>
+    </div>
+    <aside class="hero-card" aria-label="Example of milestone-based progress">
+      <h3>A home, one milestone at a time</h3>
+      <ul class="ms">
+        <li class="done"><span class="dot">&#10003;</span><div>Foundation<small>Verified on site, then released</small></div></li>
+        <li class="done"><span class="dot">&#10003;</span><div>Blockwork to lintel<small>Verified on site, then released</small></div></li>
+        <li><span class="dot">3</span><div>Roofing<small>Awaiting supervisor evidence</small></div></li>
+        <li><span class="dot">4</span><div>Finishing<small>Not started. Money not released.</small></div></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The problem</span>
+      <h2>Building a home you cannot visit is built on trust alone.</h2>
+      <p class="lead" style="margin-top:16px">Millions of Nigerians abroad send money home to build. Too many hear the same story: the photos look fine, the money is gone, and the walls are not where they were promised.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg></div><h3>Photos you cannot trust</h3><p>Old, borrowed or staged pictures that say nothing about what is really on site today.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Money ahead of progress</h3><p>Requests for the next payment before the last stage is finished, or even started.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 7h7v7"/></svg></div><h3>Costs that keep rising</h3><p>Material prices and quotes that climb with nobody to check them against the market.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><h3>No one of your own on site</h3><p>Relying on a relative or a friend who has their own life, and no way to hold anyone to account.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it will work</span>
+      <h2>Proof first. Payment second.</h2>
+      <p class="lead" style="margin-top:16px">This is the service we are researching. Your answers tell us if it solves the right problem, and what it should cost.</p>
+    </div>
+    <div class="grid g4 steps">
+      <div class="step"><h3>Agree the plan</h3><p>You, your contractor and our team agree a bill of quantities, split into milestones, before any money moves.</p></div>
+      <div class="step"><h3>A verified supervisor</h3><p>A vetted supervisor visits the site and captures tamper-proof photos with the in-app camera, location and time.</p></div>
+      <div class="step"><h3>You see the proof</h3><p>You review real evidence from your phone, wherever you are, and approve the milestone.</p></div>
+      <div class="step"><h3>Then the money moves</h3><p>Funds are released to the contractor and suppliers through a licensed escrow partner, only after verification and your approval.</p></div>
+    </div>
+    <div class="rules">
+      <div><strong>We are not a construction company</strong><span>We do not build. We make sure what is paid for is what is built.</span></div>
+      <div><strong>We never hold your money</strong><span>Funds sit with a licensed escrow partner, not with us.</span></div>
+      <div><strong>Evidence cannot be faked</strong><span>Photos are taken in-app only, signed by the device and checked on our server.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:#9db9ff">Our vision</span>
+      <h2>A home in Enugu should be as certain as a home anywhere.</h2>
+      <p class="lead" style="margin-top:18px">We want every Nigerian abroad to build with the confidence of standing on the site themselves. Honest builders get paid fast for real work. Clients see the truth. Trust becomes something you can check, not something you hope for.</p>
+    </div>
+    <div class="quote">Every naira tied to a milestone. Every milestone tied to evidence.<small>The idea behind iBackHome</small></div>
+  </div>
+</section>
+
+<!-- SURVEY -->
+<section id="survey" class="alt">
+  <div class="wrap">
+    <div class="survey-shell">
+      <div class="survey-head">
+        <span class="eyebrow">Help us get this right</span>
+        <h2>Tell us about your build</h2>
+        <p class="lead">Ten questions, about three minutes. We are not selling anything yet. We want to understand your problems and what a fair price looks like.</p>
+      </div>
+
+      <div class="form-card">
+        <form id="survey-form" novalidate>
+          <!-- Web3Forms fields -->
+          <input type="hidden" name="access_key" id="access_key" value="">
+          <input type="hidden" name="subject" value="iBackHome survey response">
+          <input type="hidden" name="from_name" value="iBackHome survey">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="progress"><span id="step-label">Step 1 of 3 · About you</span></div>
+          <div class="bar"><i id="bar"></i></div>
+
+          <!-- STEP 1 -->
+          <div class="step-pane active" data-step="1">
+            <fieldset class="q" data-required>
+              <legend>1. Which describes you best? <span class="req">*</span></legend>
+              <div class="opts">
+                <div class="opt"><input type="radio" name="who" id="who1" value="I live abroad and I am building or planning to build in Nigeria"><span>I live abroad and I am building (or planning to build) in Nigeria</span></div>
+                <div class="opt"><input type="radio" name="who" id="who2" value="I am in Nigeria managing a build for someone abroad"><span>I am in Nigeria managing a build for someone abroad</span></div>
+                <div class="opt"><input type="radio" name="who" id="who3" value="I am a contractor or builder"><span>I am a contractor or builder</span></div>
+                <div class="opt"><input type="radio" name="who" id="who4" value="Other"><span>Other</span></div>
+              </div>
+              <div class="err">Please choose one.</div>
+            </fieldset>
+
+            <div class="row">
+              <div class="q" data-required>
+                <label for="country">Country where you live <span class="req">*</span></label>
+                <input type="text" id="country" name="country" placeholder="e.g. United Kingdom" autocomplete="country-name">
+                <div class="err">Please tell us the country.</div>
+              </div>
+              <div class="q">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="e.g. Manchester" autocomplete="address-level2">
+              </div>
+            </div>
+
+            <fieldset class="q" data-required>
+              <legend>2. Where is your build today? <span class="req">*</span></legend>
+              <div class="opts two">
+                <div class="opt"><input type="radio" name="stage" id="st1" value="Thinking about it"><span>Thinking about it</span></div>
+                <div class="opt"><input type="radio" name="stage" id="st2" value="Planning, land bought"><span>Planning, land bought</span></div>
+                <div class="opt"><input type="radio" name="stage" id="st3" value="Under construction"><span>Under construction</span></div>
+                <div class="opt"><input type="radio" name="stage" id="st4" value="Finished"><span>Finished</span></div>
+                <div class="opt"><input type="radio" name="stage" id="st5" value="Stalled or abandoned"><span>Stalled or abandoned</span></div>
+              </div>
+              <div class="err">Please choose one.</div>
+            </fieldset>
+
+            <div class="q">
+              <label for="budget">3. Rough total budget for the build</label>
+              <select id="budget" name="budget">
+                <option value="">Prefer not to say</option>
+                <option>Under ₦20 million</option>
+                <option>₦20 – 50 million</option>
+                <option>₦50 – 100 million</option>
+                <option>₦100 – 250 million</option>
+                <option>Over ₦250 million</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step-pane" data-step="2">
+            <div class="q">
+              <label for="tracking">4. How do you keep track of progress today?</label>
+              <div class="hint">Phone calls, WhatsApp photos, a relative, visiting in person, nothing at all.</div>
+              <textarea id="tracking" name="tracking_today" placeholder="Tell us how it works for you now"></textarea>
+            </div>
+
+            <fieldset class="q" data-required>
+              <legend>5. Which of these have you faced, or worry about? <span class="req">*</span></legend>
+              <div class="hint">Tick all that apply.</div>
+              <div class="opts">
+                <div class="opt check"><input type="checkbox" name="pains" value="Progress photos that were old, fake or staged"><span>Progress photos that were old, fake or staged</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Contractor asking for money before finishing the work"><span>Contractor asking for money before finishing the work</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Costs rising or inflated quotes"><span>Costs rising or inflated quotes</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="No one trustworthy on site"><span>No one trustworthy on site</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Poor quality of work or materials"><span>Poor quality of work or materials</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Delays and missed deadlines"><span>Delays and missed deadlines</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Time zones and hard-to-reach contractors"><span>Time zones and hard-to-reach contractors</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="Fear of losing money to fraud"><span>Fear of losing money to fraud</span></div>
+                <div class="opt check"><input type="checkbox" name="pains" value="None of these"><span>None of these</span></div>
+              </div>
+              <div class="err">Please tick at least one.</div>
+            </fieldset>
+
+            <div class="q">
+              <label for="story">6. What went wrong, or what worries you most?</label>
+              <div class="hint">In your own words. A short story is the most useful thing you can give us. Optional.</div>
+              <textarea id="story" name="story" placeholder="Tell us what happened"></textarea>
+            </div>
+
+            <div class="q">
+              <label for="loss">7. Roughly how much has this cost you in lost money, wasted time or rework?</label>
+              <select id="loss" name="loss">
+                <option value="">Prefer not to say</option>
+                <option>Nothing so far</option>
+                <option>Under ₦1 million</option>
+                <option>₦1 – 5 million</option>
+                <option>₦5 – 20 million</option>
+                <option>Over ₦20 million</option>
+              </select>
+            </div>
+
+            <div class="q">
+              <label for="trust">8. What would make you trust a service like this?</label>
+              <textarea id="trust" name="trust" placeholder="Proof, guarantees, references, a licensed partner, a phone number to call..." style="min-height:90px"></textarea>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step-pane" data-step="3">
+            <fieldset class="q" data-required>
+              <legend>9. If a service gave you verified proof of progress and released payment only on approved milestones, would you pay for it? <span class="req">*</span></legend>
+              <div class="opts">
+                <div class="opt"><input type="radio" name="would_pay" id="wp1" value="Yes, definitely"><span>Yes, definitely</span></div>
+                <div class="opt"><input type="radio" name="would_pay" id="wp2" value="Probably"><span>Probably</span></div>
+                <div class="opt"><input type="radio" name="would_pay" id="wp3" value="Not sure"><span>Not sure</span></div>
+                <div class="opt"><input type="radio" name="would_pay" id="wp4" value="No"><span>No</span></div>
+              </div>
+              <div class="err">Please choose one.</div>
+            </fieldset>
+
+            <fieldset class="q">
+              <legend>How would you prefer to pay?</legend>
+              <div class="opts">
+                <div class="opt"><input type="radio" name="pay_model" id="pm1" value="A percentage of the project value"><span>A percentage of the project value</span></div>
+                <div class="opt"><input type="radio" name="pay_model" id="pm2" value="A fixed fee per milestone"><span>A fixed fee per milestone</span></div>
+                <div class="opt"><input type="radio" name="pay_model" id="pm3" value="A monthly fee while I am building"><span>A monthly fee while I am building</span></div>
+                <div class="opt"><input type="radio" name="pay_model" id="pm4" value="One flat fee for the whole project"><span>One flat fee for the whole project</span></div>
+              </div>
+            </fieldset>
+
+            <div class="q">
+              <label for="currency">What is a fair price for the whole service on one project?</label>
+              <div class="hint">Think of one build, start to finish. Give your answers in the currency you are most comfortable with. Skip any you cannot answer.</div>
+              <select id="currency" name="currency" style="max-width:220px;margin-bottom:14px">
+                <option value="GBP">British pounds (£)</option>
+                <option value="USD">US dollars ($)</option>
+                <option value="EUR">Euros (€)</option>
+                <option value="CAD">Canadian dollars</option>
+                <option value="NGN">Naira (₦)</option>
+              </select>
+              <div class="price-grid">
+                <div class="q"><label for="p_cheap">So cheap you would doubt the quality</label><input type="number" min="0" inputmode="numeric" id="p_cheap" name="price_too_cheap" placeholder="Amount"></div>
+                <div class="q"><label for="p_bargain">A bargain, good value for money</label><input type="number" min="0" inputmode="numeric" id="p_bargain" name="price_bargain" placeholder="Amount"></div>
+                <div class="q"><label for="p_exp">Getting expensive, but you would still consider it</label><input type="number" min="0" inputmode="numeric" id="p_exp" name="price_getting_expensive" placeholder="Amount"></div>
+                <div class="q"><label for="p_too">Too expensive, you would not pay</label><input type="number" min="0" inputmode="numeric" id="p_too" name="price_too_expensive" placeholder="Amount"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="q" data-required>
+                <label for="name">10. Your name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name">
+                <div class="err">Please enter your name.</div>
+              </div>
+              <div class="q" data-required data-email>
+                <label for="email">Your email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email">
+                <div class="err">Please enter a valid email.</div>
+              </div>
+            </div>
+
+            <fieldset class="q">
+              <legend>Can we call you for a 20-minute chat about your experience?</legend>
+              <div class="opts two">
+                <div class="opt"><input type="radio" name="call_ok" id="c1" value="Yes" checked><span>Yes, happy to talk</span></div>
+                <div class="opt"><input type="radio" name="call_ok" id="c2" value="No"><span>Email only, please</span></div>
+              </div>
+            </fieldset>
+
+            <div class="q">
+              <label for="phone">WhatsApp or phone (optional)</label>
+              <input type="text" id="phone" name="phone" autocomplete="tel" placeholder="Include the country code">
+            </div>
+
+            <div class="q consent" data-required id="consent-q">
+              <label><input type="checkbox" id="consent" name="consent" value="Agreed"><span>I agree that iBackHome may store my answers and contact me about this research. We will not sell or share your details, and you can ask us to delete them at any time. <span class="req">*</span></span></label>
+              <div class="err">Please agree so we can use your answers.</div>
+            </div>
+          </div>
+
+          <div class="status error" id="status" role="alert"></div>
+
+          <div class="nav-row">
+            <button type="button" class="btn btn-line" id="back" style="visibility:hidden">Back</button>
+            <button type="button" class="btn btn-solid" id="next">Continue</button>
+            <button type="submit" class="btn btn-solid" id="submit" style="display:none">Send my answers</button>
+          </div>
+        </form>
+
+        <div class="thanks" id="thanks" tabindex="-1">
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+          <h2 style="font-size:1.8rem">Thank you.</h2>
+          <p>Your answers are with us. Every response is read by the founding team, and if you said yes to a chat, we will be in touch within a week.</p>
+          <p>Know someone building at home? Forward them this page.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="sponsor">
+  <div class="wrap">
+    <span class="label">Proudly supported by</span>
+    <img src="assets/africaplan_foundation_logo.jpg" alt="AfricaPlan Foundation">
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/ibackhome-logo-white.png" alt="iBackHome">
+    <div class="fine">
+      iBackHome is currently in research. This page is not an offer of a financial product. We do not build, and we never hold client funds.
+      Questions? <a id="mail-link" href="#">Email us</a>.
+    </div>
+    <nav class="social" aria-label="iBackHome on social media">
+      <a id="soc-x" href="#" target="_blank" rel="noopener noreferrer" aria-label="iBackHome on X" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a id="soc-instagram" href="#" target="_blank" rel="noopener noreferrer" aria-label="iBackHome on Instagram" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a id="soc-facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="iBackHome on Facebook" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-.95.4-1.7 1.8-1.7h1.6V3.8c-.3 0-1.3-.1-2.4-.1-2.5 0-4.1 1.5-4.1 4.2v2.6H7.6v3.3h2.8V22z"/></svg>
+      </a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ---------- CONFIG: edit these two lines before publishing ---------- */
+var WEB3FORMS_ACCESS_KEY = "2212a26d-1c73-47ea-8c73-464fd321d8c8"; // free key from web3forms.com, delivered to your inbox
+var CONTACT_EMAIL        = "ibackhome.team@gmail.com";          // fallback address if the form service is unreachable
+var SOCIAL = {            // full profile links; an icon with an empty link stays hidden
+  x:         "https://x.com/iBackHome1",
+  instagram: "https://www.instagram.com/iback.home",
+  facebook:  "https://www.facebook.com/share/19jqdGX4Vi/"
+};
+/* -------------------------------------------------------------------- */
+
+(function(){
+  Object.keys(SOCIAL).forEach(function(k){
+    var a = document.getElementById('soc-'+k);
+    if(a && SOCIAL[k]){ a.href = SOCIAL[k]; a.hidden = false; }
+  });
+
+  var form = document.getElementById('survey-form');
+  var panes = [].slice.call(form.querySelectorAll('.step-pane'));
+  var labels = ['About you','Your build','Pricing and contact'];
+  var cur = 0;
+  var back = document.getElementById('back'), next = document.getElementById('next'), submit = document.getElementById('submit');
+  var bar = document.getElementById('bar'), stepLabel = document.getElementById('step-label');
+  var status = document.getElementById('status');
+
+  document.getElementById('access_key').value = WEB3FORMS_ACCESS_KEY;
+  document.getElementById('mail-link').href = 'mailto:' + CONTACT_EMAIL;
+
+  function show(i){
+    cur = i;
+    panes.forEach(function(p,n){ p.classList.toggle('active', n===i); });
+    bar.style.width = ((i+1)/panes.length*100)+'%';
+    stepLabel.textContent = 'Step '+(i+1)+' of '+panes.length+' · '+labels[i];
+    back.style.visibility = i===0 ? 'hidden' : 'visible';
+    next.style.display = i===panes.length-1 ? 'none' : '';
+    submit.style.display = i===panes.length-1 ? '' : 'none';
+    status.classList.remove('show');
+    document.getElementById('survey').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function valid(pane){
+    var ok = true, first = null;
+    pane.querySelectorAll('[data-required]').forEach(function(q){
+      var good = true;
+      var texts = q.querySelectorAll('input[type=text],input[type=email],select,textarea');
+      var radios = q.querySelectorAll('input[type=radio]');
+      var checks = q.querySelectorAll('input[type=checkbox]');
+      if(radios.length){ good = [].some.call(radios,function(r){return r.checked}); }
+      else if(checks.length){ good = [].some.call(checks,function(c){return c.checked}); }
+      else if(texts.length){
+        var v = texts[0].value.trim();
+        good = v.length>0;
+        if(good && q.hasAttribute('data-email')) good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+      q.classList.toggle('invalid', !good);
+      if(!good){ ok = false; if(!first) first = q; }
+    });
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+    return ok;
+  }
+
+  form.addEventListener('input', function(e){
+    var q = e.target.closest('.q'); if(q) q.classList.remove('invalid');
+  });
+  // keep "None of these" exclusive
+  form.addEventListener('change', function(e){
+    if(e.target.name!=='pains') return;
+    var boxes = form.querySelectorAll('input[name=pains]');
+    if(e.target.value==='None of these' && e.target.checked){
+      boxes.forEach(function(b){ if(b!==e.target) b.checked=false; });
+    } else if(e.target.checked){
+      boxes.forEach(function(b){ if(b.value==='None of these') b.checked=false; });
+    }
+  });
+
+  next.addEventListener('click', function(){ if(valid(panes[cur])) show(cur+1); });
+  back.addEventListener('click', function(){ show(cur-1); });
+
+  function collect(){
+    var data = {};
+    new FormData(form).forEach(function(v,k){
+      if(k==='pains'){ data.pains = (data.pains ? data.pains+'; ' : '') + v; }
+      else data[k] = v;
+    });
+    return data;
+  }
+
+  function mailtoFallback(data){
+    var skip = {access_key:1,subject:1,from_name:1,botcheck:1};
+    var body = Object.keys(data).filter(function(k){return !skip[k] && data[k]!==''})
+      .map(function(k){ return k.replace(/_/g,' ')+': '+data[k]; }).join('\n');
+    return 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('iBackHome survey response')+'&body='+encodeURIComponent(body);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!valid(panes[cur])) return;
+    var data = collect();
+    if(data.botcheck){ return; }
+    submit.disabled = true; submit.textContent = 'Sending...';
+    status.classList.remove('show');
+
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(data)
+    }).then(function(r){ return r.json().then(function(j){ return {ok:r.ok && j.success, j:j}; }); })
+    .then(function(res){
+      if(!res.ok) throw new Error(res.j && res.j.message || 'failed');
+      form.style.display = 'none';
+      var t = document.getElementById('thanks'); t.classList.add('show'); t.focus();
+      document.getElementById('survey').scrollIntoView({behavior:'smooth', block:'start'});
+    }).catch(function(){
+      submit.disabled = false; submit.textContent = 'Send my answers';
+      status.innerHTML = 'We could not send your answers just now. Please try again, or <a href="'+mailtoFallback(data).replace(/"/g,'&quot;')+'">send them by email instead</a>.';
+      status.classList.add('show');
+    });
+  });
+})();
+</script>
+</body>
+</html>
